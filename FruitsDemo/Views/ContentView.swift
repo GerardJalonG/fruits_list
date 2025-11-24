@@ -6,8 +6,12 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var fruitStore:FruitStore
     var body: some View {
-        List(fruitStore.fruits){ fruit in
-            FruitRowView(fruit: fruit)
+        NavigationView{
+            List(fruitStore.fruits){ fruit in
+                NavigationLink(destination: DetailFruitView(fruit: fruit)) {
+                    FruitRowView(fruit: fruit)
+                }
+            }.navigationBarTitle(Text("Fruits"))
         }
     }
 }
