@@ -14,6 +14,17 @@ struct ContentView: View {
                     }
                 }.onDelete(perform: remove)
             }.navigationBarTitle(Text("Fruits"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("+") {
+                        
+                    }
+                }
+            }
         }
     }
     func remove( at offsets: IndexSet){
