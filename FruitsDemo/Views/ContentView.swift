@@ -18,6 +18,8 @@ struct ContentView: View {
     
     @State private var newFruit = Fruit(name: "",emoji: .apple,description: "")
     
+    @State private var alertaDuplicado = false
+    
     var body: some View {
         NavigationView{
             List{
