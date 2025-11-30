@@ -7,7 +7,7 @@ class FruitStore:ObservableObject{
         return FruitStore.defaultFruits
     }
     
-    static let defaultFruits = [
+    static var defaultFruits = [
         Fruit(name: "Apple", emoji: .apple, description: "Apples help your body develop resistance against infections"),
         Fruit(name: "Pineapple", emoji: .pineapple, description: "Pineapples help fight arthritis"),
         Fruit(name: "Watermelon", emoji: .watermelon, description: "Watermelon helps control your heart rate"),
@@ -15,4 +15,8 @@ class FruitStore:ObservableObject{
     
     static let defaultFruit =  Fruit(name: "Watermelon", emoji: .watermelon, description: "Watermelon helps control your heart rate")
     
+    static func addFruit(name: String, emoji: EmojiFruit, description: String) {
+            let fruit = Fruit(name: name, emoji: emoji, description: description)
+            defaultFruits.append(fruit)
+        }
 }
