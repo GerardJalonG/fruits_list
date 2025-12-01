@@ -15,8 +15,16 @@ class FruitStore:ObservableObject{
     
     static let defaultFruit =  Fruit(name: "Watermelon", emoji: .watermelon, description: "Watermelon helps control your heart rate")
     
-    static func addFruit(name: String, emoji: EmojiFruit, description: String) {
-            let fruit = Fruit(name: name, emoji: emoji, description: description)
-            defaultFruits.append(fruit)
-        }
+    func add(_ fruit: Fruit) {
+        fruits.append(fruit)
+    }
+    
+    func remove(at offsets: IndexSet) {
+        fruits.remove(atOffsets: offsets)
+    }
+    
+    func exists(_ fruit: Fruit) -> Bool {
+        fruits.contains { $0.name.lowercased() == fruit.name.lowercased() }
+    }
+
 }

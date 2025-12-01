@@ -27,7 +27,7 @@ struct ContentView: View {
                     NavigationLink(destination: DetailFruitView(fruit: fruit)) {
                         FruitRowView(fruit: fruit)
                     }
-                }.onDelete(perform: remove)
+                }.onDelete(perform: fruitStore.remove(at:))
             }.navigationBarTitle(Text("Fruits"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -48,20 +48,22 @@ struct ContentView: View {
         }
     }
     
-    func remove( at offsets: IndexSet){
-        fruitStore.fruits.remove(atOffsets: offsets)
-    }
-    
     func onSheetDismiss() {
-        if sheetAction == .add {fruitStore.fruits.append(newFruit)
-            newFruit = Fruit(name: "", emoji: .apple, description: "")
-                sheetAction = .cancel
+        if sheetAction == .add {
+            if fruitStore.exists(newFruit) {
+                print("La fruta ya existe")
+            } else {
+                fruitStore.add(newFruit)
             }
         }
+        
+        newFruit = Fruit(name: "", emoji: .apple, description: "")
+        sheetAction = .cancel
     }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environmentObject(FruitStore())
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView().environmentObject(FruitStore())
+        }
     }
 }

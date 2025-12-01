@@ -17,8 +17,7 @@ struct AddFruitView: View {
                     TextEditor(text: $newFruit.description)
                 }
                 Section(header: Text("Image")) {
-                    EmojiPicker(emoji: $newFruit.emoji)
-                        //TODO: .listRowInsets(EdgeInsets())
+                    EmojiPicker(emoji: $newFruit.emoji).listRowInsets(EdgeInsets())
                 }
             }
             .navigationTitle("Add Fruit")
