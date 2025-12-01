@@ -16,7 +16,7 @@ struct ContentView: View {
     
     @State private var sheetAction: SheetAction = .cancel
     
-    @State private var newFruit = Fruit(name: "",emoji: .apple,description: "")
+    @State private var newFruit = FruitStore.defaultFruit
     
     @State private var alertaDuplicado = false
     
@@ -36,7 +36,7 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("+") {
-                        newFruit = Fruit(name: "",emoji: .apple, description: "");
+                        newFruit = FruitStore.defaultFruit
                         sheetIsVisible = true
                     }
                 }
