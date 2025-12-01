@@ -6,6 +6,10 @@ struct AddFruitView: View {
     @Binding var sheetAction: SheetAction
     @Binding var newFruit:Fruit
     
+    @State private var showDuplicateAlert = false
+    
+    @EnvironmentObject var fruitStore: FruitStore
+    
     var body: some View {
         
         NavigationView {
@@ -31,10 +35,20 @@ struct AddFruitView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
-                        sheetAction = .add
-                        sheetIsVisible = false
+                        let added = fruitStore.add(newFruit)
+                            if added {
+                                sheetIsVisible = false
+                            } else {
+                                showDuplicateAlert = true
+                            }
                     }
                 }
+            }
+            .alert(isPresented: $showDuplicateAlert) {
+                Alert(
+                    title: Text("Esta fruta ya existe"),
+                    dismissButton: .cancel(Text("OK"))
+                )
             }
         }
     }

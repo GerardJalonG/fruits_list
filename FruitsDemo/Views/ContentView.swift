@@ -41,26 +41,14 @@ struct ContentView: View {
                     }
                 }
             }
-            .sheet(isPresented: $sheetIsVisible,onDismiss: onSheetDismiss){
+            .sheet(isPresented: $sheetIsVisible){
                 AddFruitView(sheetIsVisible: $sheetIsVisible,
                 sheetAction: $sheetAction, newFruit: $newFruit)
             }
         }
     }
     
-    func onSheetDismiss() {
-        if sheetAction == .add {
-            if fruitStore.exists(newFruit) {
-                print("La fruta ya existe")
-            } else {
-                fruitStore.add(newFruit)
-            }
-        }
-        
-        newFruit = Fruit(name: "", emoji: .apple, description: "")
-        sheetAction = .cancel
-    }
-    
+
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView().environmentObject(FruitStore())

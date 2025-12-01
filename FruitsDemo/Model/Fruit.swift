@@ -1,6 +1,6 @@
 import Foundation
 
-struct Fruit: Hashable, Identifiable{
+struct Fruit: Hashable, Identifiable, Equatable{
     var id: some Hashable{name}
     var name:String
     var emoji:EmojiFruit
